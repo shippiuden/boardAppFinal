@@ -1,5 +1,6 @@
 package com.edwinzapata.boardapp;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -49,6 +50,25 @@ public class MainActivity extends AppCompatActivity {
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     private static final int REQUEST_PERMISSIONS = 10;
 
+
+// Este código podría servir para capturar
+//    private Bitmap takeScreenshot() {
+//        try {
+//            // crear un bitmap con la captura de pantalla
+//            View v1 = getWindow().getDecorView().getRootView();
+//            v1.setDrawingCacheEnabled(true);
+//            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+//            v1.setDrawingCacheEnabled(false);
+//            return bitmap;
+//        } catch (Throwable e) {
+//            // Several error may come out with file handling or OOM
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
+
+
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
         ORIENTATIONS.append(Surface.ROTATION_90, 0);
@@ -60,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mScreenDensity = metrics.densityDpi;
